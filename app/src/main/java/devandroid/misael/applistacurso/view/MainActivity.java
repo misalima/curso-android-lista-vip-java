@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import devandroid.misael.applistacurso.R;
+import devandroid.misael.applistacurso.controller.PersonController;
 import devandroid.misael.applistacurso.model.Person;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnSave;
     Button btnFinish;
 
-    ArrayList<Person> people = new ArrayList<Person>();
+    PersonController personController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         initViews();
+        personController = new PersonController();
         btnClear.setOnClickListener(this::clearFields);
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,15 +56,17 @@ public class MainActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validateFields()) {
-                    String firstName = inputFirstName.getText().toString();
-                    String lastName = inputLastName.getText().toString();
-                    String courseName = inputCourseName.getText().toString();
-                    String phoneNumber = inputPhoneNumber.getText().toString();
-                    Person person = new Person(firstName, lastName, courseName, phoneNumber);
-                    people.add(person);
+                validateFields();
+                boolean isSaved = personController.savePerson(new Person(inputFirstName.getText().toString(),
+                        inputLastName.getText().toString(),
+                        inputCourseName.getText().toString(),
+                        inputPhoneNumber.getText().toString()));
+
+                if(isSaved) {
                     clearFields(view);
-                    Toast.makeText(MainActivity.this, "Person saved! (" + person.getFullName() + ")", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Person saved successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -26,9 +26,9 @@
         android:layout_height="52dp"
         android:layout_margin="16dp"
         android:hint="@string/first_name_hint"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:inputType="text"
         app:layout_constraintTop_toBottomOf="@+id/titleView" />
 
     <EditText
@@ -43,17 +43,6 @@
         app:layout_constraintTop_toBottomOf="@+id/inputFirstName" />
 
     <EditText
-        android:id="@+id/inputCourseName"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_margin="16dp"
-        android:hint="@string/course_name_hint"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLastName" />
-
-    <EditText
         android:id="@+id/inputPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -62,50 +51,80 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputCourseName" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLastName" />
+
+    <EditText
+        android:id="@+id/inputCourseName"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_margin="16dp"
+        android:hint="@string/course_name_hint"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPhoneNumber" />
+
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:text="@string/save_button_text"
+        app:layout_constraintEnd_toEndOf="@+id/btnFinish"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
     <Button
         android:id="@+id/btnClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/clear_button_text"
         app:layout_constraintBottom_toTopOf="@+id/btnFinish"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintEnd_toStartOf="@+id/btnSave"
+        app:layout_constraintHorizontal_bias="0.239"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPhoneNumber"
-        app:layout_constraintVertical_bias="0.061"
-        />
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/save_button_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPhoneNumber"
-
-        />
+        app:layout_constraintTop_toBottomOf="@id/spinner2"
+        app:layout_constraintVertical_bias="0.986" />
 
     <Button
         android:id="@+id/btnFinish"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="18sp"
+        android:layout_marginBottom="64dp"
         android:text="@string/finish_button_text"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textSelectCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecione um curso..."
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/spinner2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSave"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/inputCourseName"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="371dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
