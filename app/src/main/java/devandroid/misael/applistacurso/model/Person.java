@@ -10,10 +10,9 @@ public class Person {
 
     public Person(){}
 
-    public Person(String firstName, String lastName, String desiredCourse, String phone) {
+    public Person(String firstName, String lastName, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.desiredCourse = desiredCourse;
         this.phone = phone;
     }
 
