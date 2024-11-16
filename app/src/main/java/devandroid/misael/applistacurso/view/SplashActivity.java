@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.concurrent.Executor;
 
 import devandroid.misael.applistacurso.R;
+import devandroid.misael.applistacurso.db.AppListaDB;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -35,6 +37,9 @@ public class SplashActivity extends AppCompatActivity {
 
     private void switchActivity() {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            try (AppListaDB db = new AppListaDB(SplashActivity.this)) {
+                Log.i("DB", "Database initialized;");
+            }
             Intent i = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(i);
             finish();
