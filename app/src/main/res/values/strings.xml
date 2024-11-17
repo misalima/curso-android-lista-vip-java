@@ -17,4 +17,6 @@
     <string name="title_courses">Courses</string>
     <string name="open">Open drawer</string>
     <string name="close">Close drawer</string>
+    <string name="title_activity_people_list">List of People</string>
+
 </resources>

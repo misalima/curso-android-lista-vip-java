@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.AppListaCurso" parent="Base.Theme.AppListaCurso" />
+    <style name="Theme.AppListaCurso.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.AppListaCurso.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.AppListaCurso.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

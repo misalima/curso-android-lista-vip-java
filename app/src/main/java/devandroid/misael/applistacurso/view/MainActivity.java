@@ -1,5 +1,6 @@
 package devandroid.misael.applistacurso.view;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -75,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.navList:
-                    Toast.makeText(MainActivity.this, "List", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, PeopleListActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.navCourses:
                     Toast.makeText(MainActivity.this, "Courses!", Toast.LENGTH_SHORT).show();
