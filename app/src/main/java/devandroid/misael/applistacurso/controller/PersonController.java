@@ -1,24 +1,36 @@
 package devandroid.misael.applistacurso.controller;
 
+import android.content.ContentValues;
+import android.content.Context;
+
 import java.util.ArrayList;
 
+import devandroid.misael.applistacurso.db.AppListaDB;
 import devandroid.misael.applistacurso.model.Person;
 
 public class PersonController {
-    private final ArrayList<Person> people = new ArrayList<Person>();
-    public boolean savePerson(Person person) {
-        if (validatePerson(person.getFirstName(), person.getLastName(), person.getDesiredCourse())) {
-            people.add(person);
+
+
+    public PersonController() {}
+
+    public boolean savePerson(Person person, Context ctx) {
+        if (validatePerson(person)) {
+            AppListaDB dbHelper = AppListaDB.getInstance(ctx);
+            ContentValues values = new ContentValues();
+            values.put("first_name", person.getFirstName());
+            values.put("last_name", person.getLastName());
+            values.put("desired_course", person.getDesiredCourse());
+            values.put("phone", person.getPhone());
+            dbHelper.savePerson(values);
+
             return true;
         }
         return false;
     }
 
-    public static boolean validatePerson(String firstName, String lastName, String courseName) {
-        return !firstName.isEmpty() && !lastName.isEmpty() && !courseName.isEmpty();
+    public static boolean validatePerson(Person person) {
+        return !person.getFirstName().isEmpty() && !person.getLastName().isEmpty() && !person.getDesiredCourse().isEmpty();
     }
 
-    public ArrayList<Person> getPeople() {
-        return people;
-    }
+
 }
