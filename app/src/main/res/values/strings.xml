@@ -3,7 +3,7 @@
     <string name="title_activity_main">Informe seus dados e curso desejado</string>
     <string name="first_name_text">Primeiro Nome</string>
     <string name="last_name_text">Sobrenome</string>
-    <string name="course_name_text">Nome do curso</string>
+    <string name="course_name_text">Curso</string>
     <string name="phone_number_text">Telefone</string>
     <string name="first_name_hint">Digite o primeiro nome</string>
     <string name="last_name_hint">Digite o sobrenome</string>

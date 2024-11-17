@@ -1,7 +1,6 @@
 package devandroid.misael.applistacurso.view;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,12 +25,10 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import devandroid.misael.applistacurso.R;
 import devandroid.misael.applistacurso.controller.CourseController;
 import devandroid.misael.applistacurso.controller.PersonController;
-import devandroid.misael.applistacurso.db.AppListaDB;
 import devandroid.misael.applistacurso.model.Course;
 import devandroid.misael.applistacurso.model.Person;
 
@@ -69,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         navigationView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.navHome:
@@ -99,27 +100,21 @@ public class MainActivity extends AppCompatActivity {
         ));
         initViews();
         btnClear.setOnClickListener(this::clearFields);
-        btnFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Bye!", Toast.LENGTH_SHORT).show();
-                finish();
-            }
+        btnFinish.setOnClickListener(view -> {
+            Toast.makeText(MainActivity.this, "Bye!", Toast.LENGTH_SHORT).show();
+            finish();
         });
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validateFields();
-                Person person = new Person(inputFirstName.getText().toString(), inputLastName.getText().toString(), inputPhoneNumber.getText().toString());
-                person.setDesiredCourse(spinnerCourses.getSelectedItem().toString());
-                boolean isSaved = personController.savePerson(person, MainActivity.this);
+        btnSave.setOnClickListener(view -> {
 
-                if(isSaved) {
-                    clearFields(view);
-                    Toast.makeText(MainActivity.this, "Person saved successfully", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
-                }
+            Person person = new Person(inputFirstName.getText().toString(), inputLastName.getText().toString(), inputPhoneNumber.getText().toString());
+            person.setDesiredCourse(spinnerCourses.getSelectedItem().toString());
+            boolean isSaved = personController.savePerson(person, MainActivity.this);
+
+            if(isSaved) {
+                clearFields(view);
+                Toast.makeText(MainActivity.this, "Person saved successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
             }
         });
 

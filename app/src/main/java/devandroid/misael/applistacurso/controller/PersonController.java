@@ -28,6 +28,11 @@ public class PersonController {
         return false;
     }
 
+    public ArrayList<Person> getPersons(Context ctx) {
+        AppListaDB dbHelper = AppListaDB.getInstance(ctx);
+        return dbHelper.getPersons();
+    }
+
     public static boolean validatePerson(Person person) {
         return !person.getFirstName().isEmpty() && !person.getLastName().isEmpty() && !person.getDesiredCourse().isEmpty();
     }

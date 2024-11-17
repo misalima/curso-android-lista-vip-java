@@ -10,8 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
 
         <androidx.appcompat.widget.Toolbar
@@ -23,11 +22,64 @@
             app:title="@string/title_activity_people_list"
             app:titleTextColor="@color/white" />
 
-
-        <ListView
-            android:id="@+id/peopleList"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="12dp"
+                android:stretchColumns="*"
+                style="@style/TableLayoutStyle">
+
+                <TableRow android:paddingVertical="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/first_name_text"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/TableHeaderCellStyle"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/last_name_text"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/TableHeaderCellStyle"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/phone_number_text"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/TableHeaderCellStyle"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/course_name_text"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/TableHeaderCellStyle"
+                        />
+
+                </TableRow>
+            </TableLayout>
+        </ScrollView>
 
     </LinearLayout>
 

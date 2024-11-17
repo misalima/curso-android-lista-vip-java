@@ -1,10 +1,13 @@
 package devandroid.misael.applistacurso.db;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 import devandroid.misael.applistacurso.model.Person;
 
@@ -45,6 +48,23 @@ public class AppListaDB extends SQLiteOpenHelper {
 
     public void savePerson(ContentValues person) {
         db.insert("person", null, person);
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Person> getPersons() {
+        ArrayList<Person> persons = new ArrayList<>();
+        cursor = db.rawQuery("SELECT * FROM person", null);
+        if (cursor.moveToFirst()) {
+            do {
+                Person person = new Person();
+                person.setFirstName(cursor.getString(cursor.getColumnIndex("first_name")));
+                person.setLastName(cursor.getString(cursor.getColumnIndex("last_name")));
+                person.setDesiredCourse(cursor.getString(cursor.getColumnIndex("desired_course")));
+                person.setPhone(cursor.getString(cursor.getColumnIndex("phone")));
+                persons.add(person);
+            } while (cursor.moveToNext());
+        }
+        return persons;
     }
 }
 
