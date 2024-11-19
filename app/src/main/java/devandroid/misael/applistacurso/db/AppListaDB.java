@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import devandroid.misael.applistacurso.model.Course;
 import devandroid.misael.applistacurso.model.Person;
 
 public class AppListaDB extends SQLiteOpenHelper {
@@ -20,7 +21,7 @@ public class AppListaDB extends SQLiteOpenHelper {
     SQLiteDatabase db;
 
     public AppListaDB(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION );
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
         db = getWritableDatabase();
     }
 
@@ -65,6 +66,29 @@ public class AppListaDB extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return persons;
+    }
+
+    public ArrayList<Course> getCourses() {
+        ArrayList<Course> courses = new ArrayList<>();
+        cursor = db.rawQuery("SELECT * FROM courses", null);
+        if (cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") Course course = new Course(cursor.getString(cursor.getColumnIndex("course_name")), cursor.getInt(cursor.getColumnIndex("id")));
+                courses.add(course);
+            } while (cursor.moveToNext());
+        }
+        return courses;
+    }
+
+    public int saveCourse(ContentValues course) {
+        int id = -1;
+        id = (int) db.insert("courses", null, course);
+        return id;
+    }
+
+    public void deleteCourse(int id) {
+        String deleteSql = "DELETE FROM courses WHERE id = " + id;
+        db.execSQL(deleteSql);
     }
 }
 

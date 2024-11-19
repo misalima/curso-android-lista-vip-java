@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.navCourses:
-                    Toast.makeText(MainActivity.this, "Courses!", Toast.LENGTH_SHORT).show();
+                    Intent coursesIntent = new Intent(MainActivity.this, CoursesActivity.class);
+                    startActivity(coursesIntent);
                     break;
             }
             drawerLayout.closeDrawers();
@@ -95,9 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
         courseController = new CourseController();
         personController = new PersonController();
-        courseController.setCoursesList(new ArrayList<Course>(
-                List.of(new Course("Java"), new Course("Kotlin"), new Course("Swift"), new Course("Python"))
-        ));
+
         initViews();
         btnClear.setOnClickListener(this::clearFields);
         btnFinish.setOnClickListener(view -> {
@@ -136,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         btnFinish = findViewById(R.id.btnFinish);
         spinnerCourses = findViewById(R.id.spinner2);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courseController.getCourseNames());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courseController.getCourseNames(this));
 
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         spinnerCourses.setAdapter(adapter); // set the adapter to provide layout of rows and content
